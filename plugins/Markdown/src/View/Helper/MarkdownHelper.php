@@ -21,7 +21,7 @@ class MarkdownHelper extends Helper
             '<code>' => '',
             '</code>' => '',
             '<pre>' => '<pre class="php" name="code">',
-            '<p>!!</p>' => '<p><a class="btn" onclick="$(this).parent().slideUp().next(\'.hidden\').slideDown();">Voir la réponse</a></p><div class="hidden">',
+            '<p>!!</p>' => '<p><a class="btn" onclick="$(this).parent().slideUp().next(\'.hidden\').slideDown();">See answer</a></p><div class="hidden">',
             '<p>/!!</p>' => '</div>'
         );
         $search = $replace = array();
