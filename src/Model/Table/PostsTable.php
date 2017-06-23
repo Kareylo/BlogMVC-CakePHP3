@@ -2,9 +2,14 @@
 
 namespace App\Model\Table;
 
+use App\Model\Entity\Post;
 use ArrayObject;
 use Cake\Datasource\EntityInterface;
 use Cake\Event\Event;
+use Cake\ORM\Association\BelongsTo;
+use Cake\ORM\Association\HasMany;
+use Cake\ORM\Behavior\CounterCacheBehavior;
+use Cake\ORM\Behavior\TimestampBehavior;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Utility\Text;
@@ -13,20 +18,20 @@ use Cake\Validation\Validator;
 /**
  * Posts Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Categories
- * @property \Cake\ORM\Association\BelongsTo $Users
- * @property \Cake\ORM\Association\HasMany $Comments
+ * @property BelongsTo $Categories
+ * @property BelongsTo $Users
+ * @property HasMany $Comments
  *
- * @method \App\Model\Entity\Post get($primaryKey, $options = [])
- * @method \App\Model\Entity\Post newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Post[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Post|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Post patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Post[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Post findOrCreate($search, callable $callback = null, $options = [])
+ * @method Post get($primaryKey, $options = [])
+ * @method Post newEntity($data = null, array $options = [])
+ * @method Post[] newEntities(array $data, array $options = [])
+ * @method Post|bool save(EntityInterface $entity, $options = [])
+ * @method Post patchEntity(EntityInterface $entity, array $data, array $options = [])
+ * @method Post[] patchEntities($entities, array $data, array $options = [])
+ * @method Post findOrCreate($search, callable $callback = null, $options = [])
  *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
- * @mixin \Cake\ORM\Behavior\CounterCacheBehavior
+ * @mixin TimestampBehavior
+ * @mixin CounterCacheBehavior
  */
 class PostsTable extends Table
 {
@@ -61,20 +66,27 @@ class PostsTable extends Table
         ]);
     }
 
+    /**
+     * beforeSave method
+     * @param Event $event beforeEvent Event
+     * @param EntityInterface $entity Given entity
+     * @param ArrayObject $options options
+     * @return void
+     */
     public function beforeSave(Event $event, EntityInterface $entity, ArrayObject $options)
     {
-        if (!$entity->slug && $entity->name) {
-            $entity->slug = strtolower(Text::slug($entity->name));
+        if (!$entity->get('slug') && $entity->get('name')) {
+            $entity->set('slug', strtolower(Text::slug($entity->get('name'))));
         } else {
-            $entity->slug = strtolower(Text::slug($entity->slug));
+            $entity->set('slug', strtolower(Text::slug($entity->get('slug'))));
         }
     }
 
     /**
      * Default validation rules.
      *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
+     * @param Validator $validator Validator instance.
+     * @return Validator
      */
     public function validationDefault(Validator $validator)
     {
@@ -97,8 +109,8 @@ class PostsTable extends Table
      * Returns a rules checker object that will be used for validating
      * application integrity.
      *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
+     * @param RulesChecker $rules The rules object to be modified.
+     * @return RulesChecker
      */
     public function buildRules(RulesChecker $rules)
     {

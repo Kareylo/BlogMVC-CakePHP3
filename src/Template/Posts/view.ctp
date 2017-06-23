@@ -1,5 +1,5 @@
+<?php /** @var \App\View\AppView $this */ ?>
 <div class="col-md-8">
-
 
     <div class="page-header">
         <h1><?= $post->name; ?></h1>
@@ -57,6 +57,5 @@
             <?php endforeach; ?>
         <?php endif; ?>
     </section>
-
 
 </div>

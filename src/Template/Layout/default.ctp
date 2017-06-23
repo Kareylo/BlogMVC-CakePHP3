@@ -34,8 +34,8 @@
                 </div>
                 <div class="collapse navbar-collapse navbar-ex1-collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <?php if($this->request->session()->read('Auth.User')): ?>
-                        <li><?= $this->Html->link('Admin', ['controller' => 'Admin', 'action' => 'index']) ?></li>
+                        <?php if ($this->request->session()->read('Auth.User')): ?>
+                            <li><?= $this->Html->link('Admin', ['controller' => 'Admin', 'action' => 'index']) ?></li>
                         <?php else: ?>
                             <li><?= $this->Html->link('Login', ['controller' => 'Users', 'action' => 'login']) ?></li>
                         <?php endif; ?>

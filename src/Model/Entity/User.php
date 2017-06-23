@@ -1,7 +1,7 @@
 <?php
+
 namespace App\Model\Entity;
 
-use App\Model\Entity\Post;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\ORM\Entity;
 
@@ -41,7 +41,8 @@ class User extends Entity
     ];
 
     /**
-     * @param $password
+     * Magic method to auto hash password while saving
+     * @param string $password password
      * @return null|string
      */
     protected function _setPassword($password)
@@ -49,5 +50,7 @@ class User extends Entity
         if (strlen($password) > 0) {
             return (new DefaultPasswordHasher)->hash($password);
         }
+
+        return null;
     }
 }

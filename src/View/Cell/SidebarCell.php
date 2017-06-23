@@ -1,10 +1,16 @@
 <?php
+
 namespace App\View\Cell;
 
+use App\Model\Table\CategoriesTable;
+use App\Model\Table\PostsTable;
 use Cake\View\Cell;
 
 /**
- * Sidebar cell
+ * Class SidebarCell
+ * @package App\View\Cell
+ * @property CategoriesTable Categories
+ * @property PostsTable Posts
  */
 class SidebarCell extends Cell
 {

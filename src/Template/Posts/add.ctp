@@ -1,8 +1,4 @@
-<?php
-/**
-  * @var \App\View\AppView $this
-  */
-?>
+<?php /** @var \App\View\AppView $this */ ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -20,11 +16,11 @@
     <fieldset>
         <legend><?= __('Add Post') ?></legend>
         <?php
-            echo $this->Form->control('name');
-            echo $this->Form->control('slug');
-            echo $this->Form->control('content');
-            echo $this->Form->control('category_id', ['options' => $categories]);
-            echo $this->Form->control('user_id', ['options' => $users]);
+        echo $this->Form->control('name');
+        echo $this->Form->control('slug');
+        echo $this->Form->control('content');
+        echo $this->Form->control('category_id', ['options' => $categories]);
+        echo $this->Form->control('user_id', ['options' => $users]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

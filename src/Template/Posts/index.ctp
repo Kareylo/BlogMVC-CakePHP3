@@ -1,3 +1,4 @@
+<?php /** @var \App\View\AppView $this */ ?>
 <div class="col-md-8">
     <div class="page-header">
         <h1>Blog</h1>

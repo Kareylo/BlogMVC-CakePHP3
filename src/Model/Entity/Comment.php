@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Model\Entity;
 
+use Cake\I18n\FrozenTime;
 use Cake\ORM\Entity;
 
 /**
@@ -11,9 +13,9 @@ use Cake\ORM\Entity;
  * @property string $mail
  * @property string $content
  * @property int $post_id
- * @property \Cake\I18n\FrozenTime $created
+ * @property FrozenTime $created
  *
- * @property \App\Model\Entity\Post $post
+ * @property Post $post
  */
 class Comment extends Entity
 {

@@ -1,3 +1,4 @@
+<?php /** @var \App\View\AppView $this */ ?>
 <?= $this->Form->create(null, ['class' => 'form-signin']); ?>
 <h4 class="form-signin-heading">Please sign in</h4>
 <?= $this->Form->control('username', ['label' => false, 'placeholder' => 'Username', 'class' => 'form-control', 'autofocus']) ?>

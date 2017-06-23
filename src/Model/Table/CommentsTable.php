@@ -1,9 +1,11 @@
 <?php
+
 namespace App\Model\Table;
 
 use App\Model\Entity\Comment;
 use Cake\Datasource\EntityInterface;
-use Cake\ORM\Query;
+use Cake\ORM\Association\BelongsTo;
+use Cake\ORM\Behavior\TimestampBehavior;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -11,7 +13,7 @@ use Cake\Validation\Validator;
 /**
  * Comments Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Posts
+ * @property BelongsTo $Posts
  *
  * @method Comment get($primaryKey, $options = [])
  * @method Comment newEntity($data = null, array $options = [])
@@ -21,7 +23,7 @@ use Cake\Validation\Validator;
  * @method Comment[] patchEntities($entities, array $data, array $options = [])
  * @method Comment findOrCreate($search, callable $callback = null, $options = [])
  *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @mixin TimestampBehavior
  */
 class CommentsTable extends Table
 {
@@ -51,8 +53,8 @@ class CommentsTable extends Table
     /**
      * Default validation rules.
      *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
+     * @param Validator $validator Validator instance.
+     * @return Validator
      */
     public function validationDefault(Validator $validator)
     {
@@ -83,8 +85,8 @@ class CommentsTable extends Table
      * Returns a rules checker object that will be used for validating
      * application integrity.
      *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
+     * @param RulesChecker $rules The rules object to be modified.
+     * @return RulesChecker
      */
     public function buildRules(RulesChecker $rules)
     {

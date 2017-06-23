@@ -1,3 +1,4 @@
+<?php /** @var \App\View\AppView $this */ ?>
 <div class="col-md-4 sidebar">
     <h4>Categories</h4>
     <div class="list-group">
@@ -14,4 +15,4 @@
             <?= $this->Html->link($post->name, ['controller' => 'Posts', 'action' => 'view', 'slug' => $post->slug], ['class' => 'list-group-item']); ?>
         <?php endforeach; ?>
     </div>
-</div><!-- /.sidebar -->
+</div>

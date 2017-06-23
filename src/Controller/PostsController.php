@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Model\Entity\Post;
@@ -6,7 +7,6 @@ use App\Model\Table\PostsTable;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Http\Response;
-use Cake\Network\Exception\NotFoundException;
 
 /**
  * Posts Controller
@@ -23,7 +23,11 @@ class PostsController extends AppController
         'limit' => 5
     ];
 
-
+    /**
+     * beforeFilter Event
+     * @param Event $event current event
+     * @return void
+     */
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
@@ -32,8 +36,7 @@ class PostsController extends AppController
 
     /**
      * Index method
-     *
-     * @return Response|null
+     * @return void
      */
     public function index()
     {
@@ -43,6 +46,11 @@ class PostsController extends AppController
         $this->set('_serialize', ['posts']);
     }
 
+    /**
+     * Get posts by author
+     * @param int $id author Id
+     * @return void
+     */
     public function author($id)
     {
         $posts = $this->paginate($this->Posts->find()->where(['Posts.user_id' => $id]));
@@ -52,6 +60,11 @@ class PostsController extends AppController
         $this->render('index');
     }
 
+    /**
+     * Get posts by category
+     * @param string $slug wanted slug
+     * @return void
+     */
     public function category($slug)
     {
         $posts = $this->paginate($this->Posts->find()->where(['Categories.slug' => $slug]));
@@ -65,17 +78,16 @@ class PostsController extends AppController
      * View method
      *
      * @param string|null $slug Post slug.
-     * @return Response|null
+     * @return Response|void
      * @throws RecordNotFoundException When record not found.
      */
     public function view($slug = null)
     {
         $errors = [];
         $comment = $this->Posts->Comments->newEntity();
-        if($this->request->is(['post'])) {
+        if ($this->request->is(['post'])) {
             $comment = $this->Posts->Comments->patchEntity($comment, $this->request->getData());
             if ($this->Posts->Comments->save($comment)) {
-
             }
         }
 

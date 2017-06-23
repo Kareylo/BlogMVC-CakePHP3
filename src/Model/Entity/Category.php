@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
@@ -11,7 +12,7 @@ use Cake\ORM\Entity;
  * @property string $slug
  * @property int $post_count
  *
- * @property \App\Model\Entity\Post[] $posts
+ * @property Post[] $posts
  */
 class Category extends Entity
 {
