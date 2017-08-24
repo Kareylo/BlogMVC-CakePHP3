@@ -1,0 +1,8 @@
+linters:
+  phpcs:
+    standard: PSR2
+  shellcheck:
+    shell: bash
+files:
+  ignore:
+    - 'vendor/*'
